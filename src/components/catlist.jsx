@@ -1,7 +1,8 @@
 
-import { Container, Row, Column } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
+
+import CatItem from './catlistItem';
 
 // component for displaying list of cat item
 const catlist = (props) => {
@@ -9,11 +10,15 @@ const catlist = (props) => {
     
     return (
         <Container>
+            <Row>
             {
-                _.forEach(cats, (item, index) => {
-                    console.log(index);
-                })
+                cats.map((item, index) => (
+                    <Col key={'cat' + index} xs={2} md={4} lg={3}>
+                        <CatItem cat={item}/>
+                    </Col>
+                ))
             }
+            </Row>
         </Container>
     )
     
