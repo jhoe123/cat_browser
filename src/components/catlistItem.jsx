@@ -1,5 +1,6 @@
 import { Button, Card } from 'react-bootstrap';
 
+// component for displaying  cat item for list
 const listItem = (props) => {
     const {cat, onClick} = props;
     return (<Card>

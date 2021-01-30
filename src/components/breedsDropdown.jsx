@@ -1,4 +1,7 @@
-import { DropdownButton, Dropdown } from 'react-bootstrap';
+import { DropdownButton, 
+    Dropdown, 
+    Form,
+    Row, Col } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 
@@ -6,18 +9,31 @@ import _ from 'lodash';
 const dropdown = (props) => {
     const { breeds = [], onSelected, current } = props;
     return (
-        <DropdownButton 
-            title={ current !== null ? current.name : 'Breeds' }
-            id="dropdown-basic-button">
-            { breeds.map((breed) => (
-                <Dropdown.Item 
-                    eventKey={breed.name} 
-                    onSelect={() => onSelected(breed)}
-                    active={breed === current}>
-                    {breed.name}
-                </Dropdown.Item>)
-            )}
-        </DropdownButton>    
+        <Row>
+        <Col xs={2} md={4} lg={3}>
+        <Form>
+        <Form.Group>
+            <Form.Label>Breeds</Form.Label>
+            <Form.Control>
+            <DropdownButton 
+                title={ current !== null ? current.name : 'Breeds' }
+                id="dropdown-basic-button">
+                { breeds.map((breed) => (
+                    <Dropdown.Item
+                        id="breeds" 
+                        key={breed.name}
+                        eventKey={breed.name} 
+                        onSelect={() => onSelected(breed)}
+                        active={breed === current}>
+                        {breed.name}
+                    </Dropdown.Item>)
+                )}
+            </DropdownButton>   
+            </Form.Control>
+        </Form.Group> 
+        </Form>
+        </Col>
+        </Row>
     );
 }
 
