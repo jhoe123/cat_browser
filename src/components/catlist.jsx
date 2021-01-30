@@ -1,5 +1,5 @@
 
-import { Container, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 
 import CatItem from './catlistItem';
@@ -14,7 +14,7 @@ const catlist = (props) => {
     }
     
     return (
-        <Row>
+        <Row className="displayRow">
         {
             cats.map((item, index) => (
                 <Col key={'cat' + index} xs={2} md={4} lg={3}>

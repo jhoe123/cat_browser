@@ -15,7 +15,6 @@ import {
 
 // main or home page that display the catlist
 class Home extends React.Component {
-    lastSearch = "";
     componentDidMount() {
         this.props.dispatch(fetchCatBreeds());
     }
@@ -26,7 +25,6 @@ class Home extends React.Component {
     }
     // callback when breed was selected from the dropdown
     onBreedSelected(selected) {
-        this.lastSearch = selected.id;
         this.props.history.push('/?breed=' + selected.id);
         this.props.dispatch(loadCats(selected));
     }
@@ -36,15 +34,14 @@ class Home extends React.Component {
     }
     // use to load breed based from search path
     componentDidUpdate() {
-        const { breeds, isLoading, dispatch } = this.props;
+        const { breeds, isLoading, dispatch, currentBreed} = this.props;
         if (breeds.length > 0 && !isLoading) {
             const location = this.props.location;
             if (location && location.search) {
                 var search = new URLSearchParams(location.search);
                 var breed = search.get("breed");
-                if (breed && breed !== this.lastSearch) {
+                if (breed && (currentBreed === null || breed !== currentBreed.id)) {
                     dispatch(loadCatsById(breed));
-                    this.lastSearch = breed;
                 }
             }
         }

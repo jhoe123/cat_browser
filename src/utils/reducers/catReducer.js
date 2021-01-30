@@ -10,17 +10,18 @@ import {
     DONE_RETRIEVE_IMG,
     SKIP_LOAD
 } from '../actions/actionTypes';
+import { LIMIT_PERPAGE } from '../constants';
 
 // initial state for cat reducer
 const initState = {
     isLoading: true,
-    breeds: [],
-    page: 0,
-    currentBreed: null,
-    cats: [],
+    breeds: [],                 // array of breeds
+    page: 0,                    // page indexing for cat display
+    currentBreed: null,         // current breed object that was selected
+    cats: [],                   // arrays of cats for specific breed
     currentImage: null,
     hasNext: true,
-    error: 'asdas'
+    error: null,                // value when error found
 }
 
 const state = (state = initState, action) => {
@@ -33,9 +34,11 @@ const state = (state = initState, action) => {
                 page: action.page
             }
         case DONE_RETRIEVE_CATS:
+            const hasNext = action.payload.length > 0 && 
+                action.payload.length >= LIMIT_PERPAGE;
             return {...state,
                 isLoading: false,
-                hasNext: action.payload.length > 0,
+                hasNext: hasNext,
                 cats: _.concat(state.cats, action.payload)
             }
         case SKIP_LOAD:

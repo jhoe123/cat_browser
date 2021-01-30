@@ -13,21 +13,23 @@ import store from './utils/store';
 
 function App() {
   return (
-    <Provider store={store}>
-      <Router>
-        <Switch>
-          <Route path="/:imageId">
-            <Profile/>
-          </Route>
-          <Route path="/?breed">
-            <Home/>
-          </Route>
-          <Route path="/">
-            <Home/>
-          </Route>
-        </Switch>
-      </Router>
-    </Provider>
+    <div className="App">
+      <Provider store={store}>
+        <Router>
+          <Switch>
+            <Route path="/:imageId">
+              <Profile/>
+            </Route>
+            <Route path="/?breed">
+              <Home/>
+            </Route>
+            <Route path="/">
+              <Home/>
+            </Route>
+          </Switch>
+        </Router>
+      </Provider>
+    </div>
   );
 }
 

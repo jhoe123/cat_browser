@@ -14,6 +14,7 @@ import {
     START_RETRIEVE_IMG,
     DONE_RETRIEVE_IMG,
     ERROR_FOUND,
+    ERROR_CLOSE,
     SKIP_LOAD
 } from './actionTypes';
 
@@ -33,7 +34,7 @@ export function fetchCatBreeds() {
     }
 }
 
-// load cat image from image endpoint
+// load cat image from image endpoint base from image id
 export function loadCatImage(imageId) {
     return (dispatch) => {
         dispatch({type: START_RETRIEVE_IMG});

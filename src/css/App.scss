@@ -1,12 +1,23 @@
 $dropDownHeight: 300px;
+$rowPadding: 10px 0px 10px 0px;
+$bgPadding: 20px;
 
 .App {
-  text-align: center;
+  padding: $bgPadding;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.cat-card {
+  .card-body {
+    display: flex;
+  }
+  .buttonDetails {
+    margin: auto;
+  }
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -15,9 +26,19 @@ $dropDownHeight: 300px;
   }
 }
 
+// for dropdown box
 .dropdown-menu {
   height: $dropDownHeight;
   overflow-y: scroll;
+}
+
+// for dropdown button
+.dropdown-toggle {
+  min-width: 200px
+}
+
+.displayRow {
+  padding: $rowPadding;
 }
 
 .App-header {

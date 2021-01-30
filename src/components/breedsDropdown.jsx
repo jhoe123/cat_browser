@@ -3,28 +3,32 @@ import { DropdownButton,
     Form,
     Row, Col } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
 
 // dropdown component that displays cat list
 const dropdown = (props) => {
     const { breeds = [], onSelected, current } = props;
     return (
         <Row>
-        <Col xs={2} md={4} lg={3}>
+        <Col>
         <Form>
-        <DropdownButton 
-            disabled={breeds.length === 0}
-            title={ current !== null ? current.name : 'Breeds' }>
-            { breeds.map((breed) => (
-                <Dropdown.Item
-                    key={breed.name}
-                    eventKey={breed.name} 
-                    onSelect={() => onSelected(breed)}
-                    active={breed === current}>
-                    {breed.name}
-                </Dropdown.Item>)
-            )}
-        </DropdownButton> 
+            <Form.Group>
+                <Form.Label>Breeds</Form.Label>
+                <DropdownButton 
+                    className="dropdown"
+                    variant='outline-info'
+                    disabled={breeds.length === 0}
+                    title={ current !== null ? current.name : 'Breeds' }>
+                    { breeds.map((breed) => (
+                        <Dropdown.Item
+                            key={breed.name}
+                            eventKey={breed.name} 
+                            onSelect={() => onSelected(breed)}
+                            active={breed === current}>
+                            {breed.name}
+                        </Dropdown.Item>)
+                    )}
+                </DropdownButton> 
+            </Form.Group>
         </Form>   
         </Col>
         </Row>
