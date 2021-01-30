@@ -55,7 +55,7 @@ const state = (state = initState, action) => {
         case DONE_RETRIEVE_IMG:
             return {...state, isLoading: false, currentImage: action.payload}
         case ERROR_FOUND:
-            return {...state, error: action.payload}
+            return {...state, error: action.payload, isLoading: false}
         case ERROR_CLOSE:
             return {...state, error: null}
         default:

@@ -8,8 +8,6 @@ import PropTypes from 'prop-types';
 const dropdown = (props) => {
     const { breeds = [], onSelected, current } = props;
     return (
-        <Row>
-        <Col>
         <Form>
             <Form.Group>
                 <Form.Label>Breeds</Form.Label>
@@ -30,8 +28,6 @@ const dropdown = (props) => {
                 </DropdownButton> 
             </Form.Group>
         </Form>   
-        </Col>
-        </Row>
     );
 }
 

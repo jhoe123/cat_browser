@@ -62,7 +62,7 @@ export function loadCatsById(breed = null, page = 0) {
         if (index > 0)
             dispatch(loadCats(breeds[index], page));
         else
-            dispatch({type:SKIP_LOAD});
+            dispatch({type: ERROR_FOUND, payload: "Not found!"})
     }
 }
 

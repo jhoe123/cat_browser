@@ -29,15 +29,17 @@ class Profile extends React.Component {
     render() {
         const { isLoading, currentImage, error } = this.props;
         this.checkIfCorrectCat();
-        if (isLoading || currentImage === null) {
+        if (isLoading) {
             return 'Loading'
         }
-        const breedData = currentImage.breeds[0];
+        var breedData;
+        if (currentImage && currentImage.breeds) 
+            breedData = currentImage.breeds[0];
         return (<Page 
             error={error}
             onErrorClose={this.onErrorClose.bind(this)}
             onBack={this.onBack.bind(this)} isChild>
-            <Card>
+            {breedData && <Card>
                 <Card.Img variant='top' src={currentImage.url}/>
                 <Card.Body>
                     <Card.Title>{breedData.name}</Card.Title>
@@ -45,7 +47,7 @@ class Profile extends React.Component {
                     <h6>{breedData.temperament}</h6>
                     <Card.Text>{breedData.description}</Card.Text>
                 </Card.Body>
-            </Card>
+            </Card>}
         </Page>)
     }
 }
