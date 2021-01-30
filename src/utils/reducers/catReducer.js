@@ -58,8 +58,9 @@ const state = (state = initState, action) => {
             return {...state, error: action.payload}
         case ERROR_CLOSE:
             return {...state, error: null}
+        default:
+            return state;
     }
-    return state;
 }
 
 export default state;

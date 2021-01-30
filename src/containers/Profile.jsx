@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { Card } from 'react-bootstrap';
 
 import Page from '../components/page';
-import { loadCatImage } from '../utils/actions/catActions';
+import { loadCatImage, clearError } from '../utils/actions/catActions';
 
 // this container page hold information for specific cat image
 class Profile extends React.Component {
