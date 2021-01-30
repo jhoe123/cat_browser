@@ -5,6 +5,7 @@ import {
     DONE_RETRIEVE_CATS,
     DONE_RETRIEVE_BREED,
     ERROR_FOUND,
+    ERROR_CLOSE,
     START_RETRIEVE_IMG,
     DONE_RETRIEVE_IMG,
     SKIP_LOAD
@@ -19,7 +20,7 @@ const initState = {
     cats: [],
     currentImage: null,
     hasNext: true,
-    error: null
+    error: 'asdas'
 }
 
 const state = (state = initState, action) => {
@@ -52,6 +53,8 @@ const state = (state = initState, action) => {
             return {...state, isLoading: false, currentImage: action.payload}
         case ERROR_FOUND:
             return {...state, error: action.payload}
+        case ERROR_CLOSE:
+            return {...state, error: null}
     }
     return state;
 }

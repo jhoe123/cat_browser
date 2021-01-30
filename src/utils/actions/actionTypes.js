@@ -7,3 +7,4 @@ export const START_RETRIEVE_IMG = 'start_retrieve_img';
 export const DONE_RETRIEVE_IMG = 'done_retrieve_img';
 export const SET_BREED = 'set_breed';
 export const ERROR_FOUND = 'error_found';
+export const ERROR_CLOSE = 'error_close';

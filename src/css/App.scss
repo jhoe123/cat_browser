@@ -1,4 +1,4 @@
-$dropDownHeight: 70px;
+$dropDownHeight: 300px;
 
 .App {
   text-align: center;
@@ -15,7 +15,7 @@ $dropDownHeight: 70px;
   }
 }
 
-.breeds {
+.dropdown-menu {
   height: $dropDownHeight;
   overflow-y: scroll;
 }

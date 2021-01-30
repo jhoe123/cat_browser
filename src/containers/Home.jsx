@@ -7,6 +7,7 @@ import Page from '../components/page';
 import Catlist from '../components/catlist';
 import BreedsDropdown from '../components/breedsDropdown';
 import { 
+    clearError,
     fetchCatBreeds,
     loadCats,
     loadCatsById
@@ -48,10 +49,17 @@ class Home extends React.Component {
             }
         }
     }
+    // callback when error was close
+    onErrorClose() {
+        this.props.dispatch(clearError());
+    }
     render() {
-        const { breeds, cats, isLoading, currentBreed, hasNext } = this.props;
+        const { breeds, cats, isLoading, currentBreed, hasNext, error } = this.props;
         return (
-            <Page title="Kitty Shop">
+            <Page 
+                onErrorClose={this.onErrorClose.bind(this)}
+                title="Kitty Shop" 
+                error={error !== null} >
                 <BreedsDropdown 
                     breeds={breeds} 
                     current={currentBreed}
@@ -75,6 +83,7 @@ const mapStateToProps = (state) => ({
     isLoading: state.isLoading,
     page: state.page,
     hasNext: state.hasNext,
+    error: state.error,
 });
 
 Home = withRouter(Home);

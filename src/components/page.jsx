@@ -1,10 +1,14 @@
 import PropTypes from 'prop-types';
-import { Navbar, Nav, Container, Button } from 'react-bootstrap';
+import { Navbar, Nav, Container, Button, Modal } from 'react-bootstrap';
 
+// reusable component for pages
 const page = (props) => {
-    const { title= '', isChild = false, children, onBack } = props;
+    const { 
+        title= '', isChild = false, 
+        children, onBack, 
+        error = false, onErrorClose } = props;
     return ( <div className="page">
-            <Container>
+        <Container>
             <Navbar bg='light'>
                 <Nav>
                     {isChild && 
@@ -14,9 +18,16 @@ const page = (props) => {
                 <Navbar.Brand>{title}</Navbar.Brand>
             </Navbar>
             {children}
-            </Container>
-        </div>
-    );
+            <Modal show={error} onHide={onErrorClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Problem Found</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    Apologies but we could not load new cats for you at this time! Miau!
+                </Modal.Body>
+            </Modal>
+        </Container>
+    </div>);
 }
 
 page.propTypes = {

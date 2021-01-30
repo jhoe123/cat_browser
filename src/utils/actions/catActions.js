@@ -33,7 +33,7 @@ export function fetchCatBreeds() {
     }
 }
 
-// load cat image
+// load cat image from image endpoint
 export function loadCatImage(imageId) {
     return (dispatch) => {
         dispatch({type: START_RETRIEVE_IMG});
@@ -86,4 +86,9 @@ export function loadCats(breed = null, page = 0) {
             dispatch({type: ERROR_FOUND, payload: err})
         });
     }
+}
+
+
+export function clearError() {
+    return {type: ERROR_CLOSE}
 }

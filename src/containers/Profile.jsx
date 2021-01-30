@@ -9,10 +9,11 @@ import { loadCatImage } from '../utils/actions/catActions';
 // this container page hold information for specific cat image
 class Profile extends React.Component {
     loadedImage = '';
+    // callback when back navigation was pressed
     onBack() {
         this.props.history.goBack();
     }
-    // upon component load. look for image param and load it
+    // if the cat loaded is not correct then reload it
     checkIfCorrectCat() {
         const params = this.props.match.params;
         if (params.imageId !== undefined && 
@@ -21,14 +22,21 @@ class Profile extends React.Component {
             this.props.dispatch(loadCatImage(params.imageId));
         }
     }
+    // callback when error was close
+    onErrorClose() {
+        this.props.dispatch(clearError());
+    }
     render() {
-        const { isLoading, currentImage } = this.props;
+        const { isLoading, currentImage, error } = this.props;
         this.checkIfCorrectCat();
         if (isLoading || currentImage === null) {
             return 'Loading'
         }
         const breedData = currentImage.breeds[0];
-        return (<Page onBack={this.onBack.bind(this)} isChild>
+        return (<Page 
+            error={error}
+            onErrorClose={this.onErrorClose.bind(this)}
+            onBack={this.onBack.bind(this)} isChild>
             <Card>
                 <Card.Img variant='top' src={currentImage.url}/>
                 <Card.Body>
@@ -45,6 +53,7 @@ class Profile extends React.Component {
 const mapStateToProps = (state) => ({
     isLoading: state.isLoading,
     currentImage: state.currentImage,
+    error: state.error,
 });
 
 Profile = withRouter(Profile);
